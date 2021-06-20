@@ -7,6 +7,8 @@ class AjaxProvider extends ChangeNotifier {
   bool loading = false; //로딩 상태
   bool hasMore = true;  //아이템이 더 있는지 없는지
 
+
+// 아이템 만들기 공장
   fetchItems({required int nextId}) async {
     // ignore: unnecessary_statements
     nextId ?? 0; //nextId가 null이면 0값이다.
@@ -32,9 +34,9 @@ class AjaxProvider extends ChangeNotifier {
     notifyListeners(); //ui 업데이트
     }
 
+    //리스트 만들어주는 메서드
   _makeRequest({required int nextId}) async {
     assert(nextId != null); //nextId가 null이면 안된다. //null이면 중단(디버깅 모드일 때만)
-
     await Future.delayed(Duration(seconds: 1));
 
     //Item 은 nextId가 99 까지만 있다.
@@ -44,6 +46,7 @@ class AjaxProvider extends ChangeNotifier {
 
     //nextId 다음에 20개의 값을 리스트로 리턴한다.
     //아래에서 index는 새로 가져오는 리스트의 인덱스이다.
+
     return List.generate(20, (index) => nextId + index);
   }
 }
